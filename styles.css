@@ -19,6 +19,21 @@ h1 {
     margin: 0;
 }
 
+/* Estilo do botão "Filmes Populares" */
+#popular-movies-button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#popular-movies-button:hover {
+    background-color: #555;
+}
+
 /* Estilo da caixa de busca */
 .search-container {
     text-align: center;
