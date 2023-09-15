@@ -1,0 +1,176 @@
+/* Estilo global */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+h1 {
+    margin: 0;
+}
+
+/* Estilo da caixa de busca */
+.search-container {
+    text-align: center;
+}
+
+#search-input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 60%;
+    max-width: 300px;
+}
+
+#search-button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#search-button:hover {
+    background-color: #555;
+}
+
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+/* Estilo do container de filmes */
+.movie-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Estilo para caixa de filme */
+.movie-card {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 200px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    margin-bottom: 20px;
+}
+
+.movie-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.movie-card h2 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.movie-card p {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+/* Efeito de hover */
+.movie-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Consulta de mídia para telas maiores (min-width: 768px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    header {
+        padding: 10px;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    .search-container {
+        width: 100%;
+        text-align: center;
+    }
+    #search-input {
+        width: 100%;
+        max-width: 80%;
+    }
+    #search-button {
+        width: 100%;
+        max-width: 80%;
+        margin-top: 10px;
+    }
+    .movie-card {
+        width: 45%; /* Ou qualquer valor adequado para a exibição em tablets */
+    }
+}
+
+@media (max-width: 767px) {
+    header {
+        padding: 10px;
+    }
+    h1 {
+        font-size: 1.2rem;
+    }
+    .search-container {
+        width: 100%;
+        text-align: center;
+    }
+    #search-input {
+        width: 100%;
+        max-width: 80%;
+    }
+    #search-button {
+        width: 100%;
+        max-width: 80%;
+        margin-top: 10px;
+    }
+    .movie-card {
+        width: 100%; /* Exibir um filme por linha em smartphones */
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 10px;
+    }
+    h1 {
+        font-size: 1.1rem;
+    }
+    .search-container {
+        width: 100%;
+        text-align: center;
+    }
+    #search-input {
+        width: 100%;
+        max-width: 80%;
+    }
+    #search-button {
+        width: 100%;
+        max-width: 80%;
+        margin-top: 10px;
+    }
+    .movie-card {
+        width: 100%; /* Exibir um filme por linha em dispositivos muito pequenos */
+    }
+}
