@@ -75,7 +75,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         try {
             const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=pt-BR`;
             const response = await fetch(apiUrl);
+            
             const data = await response.json();
+            console.log('Detalhes do filme:', data);
             return data;
         } catch (error) {
             console.error('Erro ao buscar detalhes do filme:', error);
@@ -88,13 +90,16 @@ document.addEventListener('DOMContentLoaded', async function () {
         const movieDetailsContainer = document.getElementById('movie-details');
         // preencha os detalhes do filme na página de detalhes
         movieDetailsContainer.innerHTML = `
+            
             <h2>${movie.title}</h2>
             <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
             <p>Ano: ${movie.release_date.split('-')[0]}</p>
             <p>Gênero: ${movie.genres.map((genre) => genre.name).join(', ')}</p>
             <p>Diretores: ${movie.credits.crew.filter((crew) => crew.job === 'Director').map((director) => director.name).join(', ')}</p>
             <p>Sinopse: ${movie.overview}</p>
+            
         `;
+        console.log('Detalhes do filme preenchidos:', movie);
     }
 
     // evento de clique em um cartão de filme
@@ -112,6 +117,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                 // preenche os detalhes do filme na página de detalhes
                 fillMovieDetails(movieDetails);
+                console.log('Detalhes do filme preenchidos:', movieDetails);
 
                 // Redireciona o usuário para a página de detalhes
                 window.location.href = 'movie.html';
@@ -121,28 +127,42 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     });
 
+    // Verifique se estamos na página index.html antes de adicionar o ouvinte de evento
+    if (document.getElementById('search-button')) {
+        const searchButton = document.getElementById('search-button');
 
-    // evento de clique no botão de pesquisa
-    searchButton.addEventListener('click', () => {
-        const searchTerm = searchInput.value.trim();
-        if (searchTerm !== '') {
-            searchMovies(searchTerm);
-        }
-    });
-
-    // evento de pressionar Enter na caixa de pesquisa
-    searchInput.addEventListener('keyup', (event) => {
-        if (event.key === 'Enter') {
+        // Adicione o ouvinte de evento de clique para o botão de busca
+        searchButton.addEventListener('click', () => {
             const searchTerm = searchInput.value.trim();
             if (searchTerm !== '') {
                 searchMovies(searchTerm);
             }
-        }
-    });
+        });
+    }
+    
+    // verifique se estamos na página index.html antes de adicionar o ouvinte de evento
+    if (document.getElementById('search-input')) {
+        const searchInput = document.getElementById('search-input');
 
-    // evento de clique no botão "Filmes Populares"
-    popularMoviesButton.addEventListener('click', () => {
-        searchPopularMovies();
-    });
-    await searchPopularMovies();
+        // evento de pressionar Enter na caixa de pesquisa
+        searchInput.addEventListener('keyup', (event) => {
+            if (event.key === 'Enter') {
+                const searchTerm = searchInput.value.trim();
+                if (searchTerm !== '') {
+                    searchMovies(searchTerm);
+                }
+            }
+        });
+    }
+
+    // verifique se estamos na página index.html antes de adicionar o ouvinte de evento
+    if (document.getElementById('popular-movies-button')) {
+        const popularMoviesButton = document.getElementById('popular-movies-button');
+
+        // evento de clique no botão "Filmes Populares"
+        popularMoviesButton.addEventListener('click', () => {
+            searchPopularMovies();
+        });
+        await searchPopularMovies();
+    }
 });
