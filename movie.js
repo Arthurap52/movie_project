@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     
     const baseUrl = 'https://api.themoviedb.org/3';
     const apiKey = 'bf48292768beea4e78cc070fc994f55c';
-    
+
     // Função para buscar detalhes do filme por ID na API 
     async function fetchMovieDetails(movieId) {
         try {
@@ -19,35 +19,35 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     // Função para preencher os detalhes do filme na página de detalhes
-function fillMovieDetails(movie) {
-    const movieDetailsContainer = document.getElementById('movie-details');
-    
-    // Verifique se 'movie.credits' está definido antes de acessar a propriedade 'crew'
-    const directors = movie.credits && movie.credits.crew ? movie.credits.crew.filter((crew) => crew.job === 'Director').map((director) => director.name).join(', ') : 'N/A';
+    function fillMovieDetails(movie) {
+        const movieDetailsContainer = document.getElementById('movie-details');
+        
+        // Verifique se 'movie.credits' está definido antes de acessar a propriedade 'crew'
+        const directors = movie.credits && movie.credits.crew ? movie.credits.crew.filter((crew) => crew.job === 'Director').map((director) => director.name).join(', ') : 'N/A';
 
-    // Preencha os detalhes do filme na página de detalhes
-    movieDetailsContainer.innerHTML = `
-        <div id="movie-details">
-        <div class="movie-image">
-            <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
-        </div>
-        <div class="movie-info">
-            <h2>${movie.title}</h2>
-            <p><strong>Ano de Lançamento:</strong> ${movie.release_date.split('-')[0]}</p>
-            <p><strong>Gêneros:</strong></p>
-            <ul>
-                ${movie.genres.map((genre) => `<li>${genre.name}</li>`).join('')}
-            </ul>
-            <p><strong>Diretores:</strong></p>
-            <ul>
-                ${directors}
-            </ul>
-            <p><strong>Sinopse:</strong> ${movie.overview}</p>
-            <button id="watch-button">Assistir</button>
-        </div
-    `;
-    console.log('Detalhes do filme preenchidos:', movie);
-}
+        // Preencha os detalhes do filme na página de detalhes
+        movieDetailsContainer.innerHTML = `
+            <div id="movie-details">
+            <div class="movie-image">
+                <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+            </div>
+            <div class="movie-info">
+                <h2>${movie.title}</h2>
+                <p><strong>Ano de Lançamento:</strong> ${movie.release_date.split('-')[0]}</p>
+                <p><strong>Gêneros:</strong></p>
+                <ul>
+                    ${movie.genres.map((genre) => `<li>${genre.name}</li>`).join('')}
+                </ul>
+                <p><strong>Diretores:</strong></p>
+                <ul>
+                    ${directors}
+                </ul>
+                <p><strong>Sinopse:</strong> ${movie.overview}</p>
+                <button id="watch-button">Assistir</button>
+            </div
+        `;
+        console.log('Detalhes do filme preenchidos:', movie);
+    }
 
 
     // Função para obter o ID do filme a partir da URL
