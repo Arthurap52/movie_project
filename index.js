@@ -25,10 +25,14 @@ document.addEventListener('DOMContentLoaded', async function () {
                 movieCard.setAttribute('data-id', movie.id);
 
                 movieCard.innerHTML = `
-                    <a href="movie.html?id=${movie.id}">
-                        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+                <a href="movie.html?id=${movie.id}">
+                    <div class="movie-image">
+                        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="{movie.title}">
+                    </div>
+                    <div class="movie-info">
                         <h2>${movie.title}</h2>
-                    </a>
+                    </div>
+                </a>
                 `;
                 movieList.appendChild(movieCard);
             });
@@ -57,8 +61,12 @@ document.addEventListener('DOMContentLoaded', async function () {
                 // Conteúdo do cartão de filme
                 movieCard.innerHTML = `
                     <a href="movie.html?id=${movie.id}">
-                        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
-                        <h2>${movie.title}</h2>
+                        <div class="movie-image">
+                            <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+                        </div>
+                        <div class="movie-info">
+                            <h2>${movie.title}</h2>
+                        </div>
                     </a>
                 `;
                 movieList.appendChild(movieCard);
@@ -108,4 +116,15 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
         await searchPopularMovies();
     }
+
+    // Selecione todos os elementos com a classe "movie-card"
+    const movieCards = document.querySelectorAll('.movie-card');
+
+    // Adicione um ouvinte de evento de clique a cada cartão de filme
+    movieCards.forEach((card) => {
+        card.addEventListener('click', () => {
+            // Redirecione para a página desejada quando o cartão for clicado
+            window.location.href = 'movie.html'; // Substitua com a URL desejada
+        });
+    });
 });

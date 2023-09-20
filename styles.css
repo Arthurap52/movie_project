@@ -1,14 +1,15 @@
 /* Estilo global */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #1c1c28;
+    color: #fff;
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: #333;
-    color: white;
+    background-color: #252537;
+    color: #FFFFFF;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,6 +29,8 @@ h1 {
     border-radius: 5px;
     font-size: 1rem;
     cursor: pointer;
+    z-index: 1;
+
 }
 
 #popular-movies-button:hover {
@@ -37,45 +40,69 @@ h1 {
 /* Estilo da caixa de busca */
 .search-container {
     text-align: center;
+    overflow: hidden;
+    max-width: 300px; /* Largura inicial do ícone de pesquisa */
+    transition: max-width 0.6s ease; /* Adiciona uma transição suave para a animação */
+    display: flex;
+    align-items: center;
 }
 
+/* Estilo para o ícone de pesquisa */
+.search-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+/* Estilo para a entrada de texto (inicialmente oculta) */
 #search-input {
     padding: 10px;
     border: none;
     border-radius: 5px;
     font-size: 1rem;
-    width: 60%;
-    max-width: 300px;
+    width: 0; /* Inicialmente, a largura é 0 */
+    box-sizing: border-box;
+    opacity: 0;
+    transition: width 0.6s ease, opacity 0.6s ease; /* Transições para largura e opacidade */
 }
 
-#search-button {
-    padding: 10px 20px;
-    background-color: #333;
+/* Quando o mouse passa sobre a caixa de busca, ela se expande lateralmente */
+.search-container:hover #search-input {
+    width: 220px; /* Largura final ao expandir */
+    opacity: 1; /* Torna o campo de entrada de texto visível */
+}
+
+/* Estilo para a seção de detalhes do filme na página de detalhes */
+#movie-details .movie-info {
+    flex: 1; /* Ocupa o espaço disponível ao lado da imagem */
+    padding: 20px; /* Espaçamento interno */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
     color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
+    border-radius: 0 5px 5px 0; /* Borda arredondada no lado direito */
 }
 
-#search-button:hover {
-    background-color: #555;
+/* Certifique-se de que a imagem do filme ainda está à esquerda */
+#movie-details .movie-image {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
 }
 
-/* Estilo para o contêiner dos detalhes do filme */
-#movie-details {
-    display: flex; /* Para colocar a imagem ao lado das informações */
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 20px;
+#movie-details .movie-image img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Estilo para a imagem do filme */
 .movie-image {
-    flex: 1; /* A imagem ocupará 1/3 do espaço disponível */
-    margin-right: 20px; /* Espaço entre a imagem e as informações */
+    flex: 1;
+    overflow: hidden;
+    position: relative;
 }
 
 .movie-image img {
@@ -83,9 +110,45 @@ h1 {
     height: auto;
 }
 
-/* Estilo para as informações do filme */
-.movie-info {
-    flex: 2; /* As informações ocuparão 2/3 do espaço disponível */
+/* Estilo para a classe .movie-info na página de detalhes */
+.movie-page .movie-info {
+    flex: 1; /* Ocupa o espaço disponível ao lado da imagem */
+    padding: 20px; /* Espaçamento interno */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 0 5px 5px 0; /* Borda arredondada no lado direito */
+}
+
+/* Estilo para a classe .movie-info na página principal */
+.index-page .movie-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    display: flex;
+    flex-direction: column; /* Altere para column para empilhar elementos verticalmente */
+    align-items: center; /* Centralize verticalmente */
+    justify-content: center; /* Centralize horizontalmente */
+    text-align: center;
+    transition: transform 0.5s ease;
+    opacity: 0;
+}
+/* Quando o mouse passa sobre o cartão, o nome do filme aparece e a imagem fica mais escura */
+.movie-card:hover .movie-info {
+    transform: translateY(0); /* Mova o texto de volta para dentro do cartão */
+    opacity: 1; /* Torna o texto do nome do filme visível */
+}
+
+.movie-card:hover .movie-image img {
+    filter: brightness(60%); /* Escurece a imagem quando o mouse passa sobre o cartão */
 }
 
 .movie-info h2 {
@@ -166,7 +229,7 @@ main {
     width: 200px;
     text-align: center;
     transition: transform 0.2s ease-in-out;
-    margin-bottom: 20px;
+    position: relative;
 }
 
 .movie-card img {
@@ -178,7 +241,9 @@ main {
 .movie-card h2 {
     font-size: 1.2rem;
     margin: 10px 0;
-    color: #333; 
+    color: #fff;
+    opacity: 0; /* Inicialmente, o nome do filme está oculto */
+    transition: opacity 0.3s ease; /* Adiciona uma transição suave para a animação de aparecimento */
 }
 
 .movie-card a {
@@ -195,6 +260,10 @@ main {
 .movie-card:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.movie-card:hover h2 {
+    opacity: 1; /* Torna o nome do filme visível */
 }
 
 /* Consulta de mídia para telas maiores (min-width: 768px) */

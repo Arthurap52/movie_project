@@ -28,23 +28,22 @@ document.addEventListener('DOMContentLoaded', async function () {
         // Preencha os detalhes do filme na página de detalhes
         movieDetailsContainer.innerHTML = `
             <div id="movie-details">
-            <div class="movie-image">
-                <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+                <div class="movie-info">
+                    <img class="movie-image" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+                    <h2>${movie.title}</h2>
+                    <p><strong>Ano de Lançamento:</strong> ${movie.release_date.split('-')[0]}</p>
+                    <p><strong>Gêneros:</strong></p>
+                    <ul>
+                        ${movie.genres.map((genre) => `<li>${genre.name}</li>`).join('')}
+                    </ul>
+                    <p><strong>Diretores:</strong></p>
+                    <ul>
+                        ${directors}
+                    </ul>
+                    <p><strong>Sinopse:</strong> ${movie.overview}</p>
+                    <button id="watch-button">Assistir</button>
+                </div>
             </div>
-            <div class="movie-info">
-                <h2>${movie.title}</h2>
-                <p><strong>Ano de Lançamento:</strong> ${movie.release_date.split('-')[0]}</p>
-                <p><strong>Gêneros:</strong></p>
-                <ul>
-                    ${movie.genres.map((genre) => `<li>${genre.name}</li>`).join('')}
-                </ul>
-                <p><strong>Diretores:</strong></p>
-                <ul>
-                    ${directors}
-                </ul>
-                <p><strong>Sinopse:</strong> ${movie.overview}</p>
-                <button id="watch-button">Assistir</button>
-            </div
         `;
         console.log('Detalhes do filme preenchidos:', movie);
     }
@@ -90,5 +89,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 console.error('Erro ao buscar detalhes do filme:', error);
             }
         }
-    });
+});
+
 });
