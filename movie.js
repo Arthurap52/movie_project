@@ -27,21 +27,31 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // Preencha os detalhes do filme na página de detalhes
         movieDetailsContainer.innerHTML = `
-            <div id="movie-details">
-                <div class="movie-info">
-                    <img class="movie-image" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
-                    <h2>${movie.title}</h2>
-                    <p><strong>Ano de Lançamento:</strong> ${movie.release_date.split('-')[0]}</p>
-                    <p><strong>Gêneros:</strong></p>
-                    <ul>
-                        ${movie.genres.map((genre) => `<li>${genre.name}</li>`).join('')}
-                    </ul>
-                    <p><strong>Diretores:</strong></p>
-                    <ul>
-                        ${directors}
-                    </ul>
-                    <p><strong>Sinopse:</strong> ${movie.overview}</p>
-                    <button id="watch-button">Assistir</button>
+            <div class="movie-background">
+                <div id="movie-details" class="movie-details-container">
+                    <div class="movie-image">
+                        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+                    </div>
+                    <div class="movie-info-container">
+                        <div class="movie-title-container">
+                            <h2 class="movie-title">${movie.title}</h2>
+                        </div>
+                    
+                        <div class="movie-info">
+                            
+                            <p><strong>Ano de Lançamento:</strong> ${movie.release_date.split('-')[0]}</p>
+                            <p><strong>Gêneros:</strong></p>
+                            <ul>
+                                ${movie.genres.map((genre) => `<li>${genre.name}</li>`).join('')}
+                            </ul>
+                            <p><strong>Diretores:</strong></p>
+                            <ul>
+                                ${directors}
+                            </ul>
+                            <p><strong>Sinopse:</strong> ${movie.overview}</p>
+                            <button id="watch-button">Assistir</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         `;
@@ -82,6 +92,15 @@ document.addEventListener('DOMContentLoaded', async function () {
             try {
                 // busca detalhes do filme por ID
                 const movieDetails = await fetchMovieDetails(movieId);
+
+                // Obtenha a URL da imagem de plano de fundo do filme
+                const backdropUrl = `https://image.tmdb.org/t/p/original${movieDetails.backdrop_path}`;
+
+                // Selecione a div do plano de fundo
+                const backgroundDiv = document.querySelector('.movie-background');
+
+                // Defina a imagem de plano de fundo usando CSS
+                backgroundDiv.style.backgroundImage = `url(${backdropUrl})`;
 
                 // Redireciona o usuário para a página de detalhes com detalhes do filme como parâmetros
                 window.location.href = `movie.html?id=${movieId}`;
