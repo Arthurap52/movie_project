@@ -89,7 +89,7 @@ h1 {
     padding: 25px;
 }
 
-* Estilo para a seção de detalhes do filme na página de detalhes */
+/* Estilo para a seção de detalhes do filme na página de detalhes */
 #movie-details .movie-info {
     flex: 1; /* Ocupa o espaço disponível ao lado da imagem */
     padding: 20px;
