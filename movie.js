@@ -45,10 +45,10 @@ document.addEventListener('DOMContentLoaded', async function () {
                                 ${movie.genres.map((genre) => `<li>${genre.name}</li>`).join('')}
                             </ul>
                             <p><strong>Diretores:</strong></p>
-                            <ul>
+                            <ul >
                                 ${directors}
                             </ul>
-                            <p><strong>Sinopse:</strong> ${movie.overview}</p>
+                            <p ><strong>Sinopse:</strong> ${movie.overview}</p>
                             <button id="watch-button">Assistir</button>
                         </div>
                     </div>
