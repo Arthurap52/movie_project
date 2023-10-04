@@ -77,7 +77,6 @@ h1 {
     display: flex;
     border-radius: 5px;
     padding: 20px;
-    margin-top: 90px;
 }
 
 /* Estilo para o contêiner do título */
@@ -92,16 +91,19 @@ h1 {
 /* Estilo para a seção de detalhes do filme na página de detalhes */
 #movie-details .movie-info {
     flex: 1; /* Ocupa o espaço disponível ao lado da imagem */
+    margin: 0 auto;
     padding: 20px;
-    padding-top: 90px; /* Adiciona um espaço superior para evitar sobreposição ao cabeçalho */
+    padding-top: 20px; /* Reduza o espaço superior para evitar sobreposição ao cabeçalho */
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: center; /* Centralize horizontalmente */
+    justify-content: center; /* Centralize verticalmente */
     text-align: center;
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
     border-radius: 10px; /* Borda arredondada no lado direito */
+    max-width: 100%;
+
 }
 
 /* Certifique-se de que a imagem do filme ainda está à esquerda */
@@ -126,7 +128,7 @@ h1 {
     gap: 10px;
     max-width: 300px;
     overflow: hidden; /* Impede que a imagem seja cortada */
-    align-items: center;
+    
 }
 
 .movie-image img {
@@ -142,7 +144,9 @@ h1 {
     flex-direction: column;
     justify-content: flex-start; 
     align-items: center;
-    padding-top: 20px; 
+    padding: 20px; 
+    max-width: 70%;
+    
 }
 
 /* Estilo para o título do filme */
@@ -199,8 +203,6 @@ h1 {
     filter: brightness(60%); /* Escurece a imagem quando o mouse passa sobre o cartão */
 }
 
-
-
 /* Estilo para os detalhes do filme */
 .movie-info p {
     font-size: 1.2rem;
@@ -232,36 +234,26 @@ h1 {
     display: inline-block; /* Exibir os cartões lado a lado */
 }
 
-/* Estilo para a div do plano de fundo */
-.movie-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-position: center top 70px;
-    z-index: -1; /* Coloca o plano de fundo atrás do conteúdo */
-    background-size: cover;
-    background-position: center top; /* Posiciona a imagem no topo */
-    opacity: 0.7; /* Define a opacidade desejada */
-    transition: opacity 0.5s ease; 
-}
+
 
 /* Estilo do botão de retorno */
 #back-button {
+    padding: 10px 20px;
     background-color: #333;
     color: white;
-    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     font-size: 1rem;
     cursor: pointer;
-    text-decoration: none; /* Remova sublinhado de links */
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    display: inline-block;
 }
 
 #back-button:hover {
     background-color: #555;
 }
+
 
 /* Estilo para o botão "Assistir" */
 #watch-button {
@@ -272,7 +264,7 @@ h1 {
     border-radius: 5px;
     font-size: 1.2rem;
     cursor: pointer;
-    margin-top: auto; /* Empurra o botão para a parte inferior do container */
+    margin-top: 15px; /* Empurra o botão para a parte inferior do container */
     transition: background-color 0.3s ease;
 }
 
